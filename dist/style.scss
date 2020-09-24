@@ -16,4 +16,8 @@
 // ==========================================================================
 // Components
 // ==========================================================================
-@import "vl-ui-info-tile/src/scss/info-tile"
+@import "vl-ui-info-tile/src/scss/info-tile";
+
+.vl-info-tile__header__subtitle, .vl-accordion__content {
+    margin-left: 2rem;
+}
