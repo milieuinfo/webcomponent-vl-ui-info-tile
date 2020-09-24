@@ -22,7 +22,7 @@
     margin-left: 2rem;
 }
 
-#title vl-pill {
+slot[name="title-label"] {
     float: right;
     margin-left: 3rem;
 }
