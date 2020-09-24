@@ -1,4 +1,5 @@
 import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
+import '/node_modules/@govflanders/vl-ui-util/dist/js/util.js';
 import '/lib/accordion.js';
 
 /**
