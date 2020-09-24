@@ -60,21 +60,20 @@ export class VlInfoTile extends vlElement(HTMLElement) {
   }
 
   connectedCallback() {
-    this._processContent();
+    this._preventContentClickPropagation();
+  }
+
+  get _subtitleElement() {
+    return this._shadow.querySelector('slot[name="subtitle"]');
   }
 
   get _contentElement() {
-    return this._shadow.querySelector('.vl-info-tile__content');
+    return this._shadow.querySelector('slot[name="content"]');
   }
 
-  get _contentSlot() {
-    return this.querySelector('[slot="content"]');
-  }
-
-  _processContent() {
-    if (!this._contentSlot) {
-      // this._contentElement.remove();
-    }
+  _preventContentClickPropagation() {
+    this._subtitleElement.addEventListener('click', (e) => e.stopPropagation());
+    this._contentElement.addEventListener('click', (e) => e.stopPropagation());
   }
 
   _toggleableChangedCallback(oldValue, newValue) {
