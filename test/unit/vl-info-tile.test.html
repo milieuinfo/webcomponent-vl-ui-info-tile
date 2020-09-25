@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../../web-component-tester/browser.js"></script>
+
+  <script type="module" src="../../src/vl-info-tile.js"></script>
+  <script src="/node_modules/sinon/pkg/sinon.js"></script>
+</head>
+
+<body>
+  <test-fixture id="vl-info-tile-fixture">
+    <template>
+      <vl-info-tile>
+        <span slot="title">Broos Deprez</span>
+        <span slot="subtitle">Uw zoon (19.05.2005) <br> niet verwant aan referentiepersoon</span>
+        <div slot="content">
+          <p><strong>Beslissingsbrief Studietoelage</strong></p>
+          <p>De studietoelage voor Broos Deprez werd toegekend.</p>
+        </div>
+      </vl-info-tile>
+    </template>
+  </test-fixture>
+  
+  <test-fixture id="vl-info-tile-toggleable-fixture">
+    <template>
+      <vl-info-tile data-vl-toggleable>
+        <span slot="title">Broos Deprez</span>
+        <span slot="subtitle">Uw zoon (19.05.2005) <br> niet verwant aan referentiepersoon</span>
+        <div slot="content">
+          <p><strong>Beslissingsbrief Studietoelage</strong></p>
+          <p>De studietoelage voor Broos Deprez werd toegekend.</p>
+        </div>
+      </vl-info-tile>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('vl-info-tile', () => {
+      const sandbox = sinon.createSandbox();
+
+      teardown(() => {
+        sandbox.restore();
+      });
+
+      test('de slot elementen worden op de juiste plaatst gevisualiseerd', () => {
+        const infoTile = fixture('vl-info-tile-fixture');
+        const title = infoTile.shadowRoot.querySelector('.vl-info-tile__header__title slot');
+        const subtitle = infoTile.shadowRoot.querySelector('.vl-info-tile__header__subtitle slot');
+        const content = infoTile.shadowRoot.querySelector('.vl-info-tile__content slot');
+        const footer = infoTile.shadowRoot.querySelector('.vl-info-tile__footer slot');
+        assert.equal(title.assignedElements()[0], document.querySelector('[slot="title"]'));
+        assert.equal(subtitle.assignedElements()[0], document.querySelector('[slot="subtitle"]'));
+        assert.equal(content.assignedElements()[0], document.querySelector('[slot="content"]'));
+        assert.equal(footer.assignedElements()[0], document.querySelector('[slot="footer"]'));
+      });
+
+      test('er kan gevraagd worden of de tile open staat of niet', () => {
+        const infoTile = fixture('vl-info-tile-fixture');
+        const infoTileToggleable = fixture('vl-info-tile-toggleable-fixture');
+        assert.isTrue(infoTile.isOpen);
+        assert.isFalse(infoTileToggleable.isOpen);
+      });
+
+      test('een toggleable info tile zal de accordion dress functie correct aanroepen', () => {
+        sandbox.spy(vl.accordion, 'dress');
+        const infoTile = fixture('vl-info-tile-toggleable-fixture');
+        assert.isTrue(vl.accordion.dress.calledWith(infoTile._element));
+      });
+
+      test('een toggleable info tile kan programmatisch geopend en gesloten worden', () => {
+        const infoTile = fixture('vl-info-tile-toggleable-fixture');
+        assert.isFalse(infoTile.isOpen);
+        infoTile.toggle();
+        assert.isTrue(infoTile.isOpen);
+      });
+
+      test('bij een toggleable info tile zal de click op de sub titel of de content tegengehouden worden om te voorkomen dat de info tile geopend of gesloten wordt', () => {
+        const infoTile = fixture('vl-info-tile-toggleable-fixture');
+        infoTile.toggle();
+        assert.isTrue(infoTile.isOpen);
+        infoTile._subtitleElement.click();
+        assert.isTrue(infoTile.isOpen);
+        infoTile._contentElement.click();
+        assert.isTrue(infoTile.isOpen);
+      });
+    });
+  </script>
+</body>
+
+</html>
