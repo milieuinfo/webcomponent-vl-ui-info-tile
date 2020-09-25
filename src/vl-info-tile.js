@@ -55,6 +55,10 @@ export class VlInfoTile extends vlElement(HTMLElement) {
     this._preventContentClickPropagation();
   }
 
+  get isOpen() {
+    return this._element.classList.contains('js-vl-accordion--open');
+  }
+
   get _subtitleElement() {
     return this._shadow.querySelector('slot[name="subtitle"]');
   }
