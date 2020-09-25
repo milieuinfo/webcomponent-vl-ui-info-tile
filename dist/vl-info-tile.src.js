@@ -32,7 +32,7 @@ export class VlInfoTile extends vlElement(HTMLElement) {
           <div class="vl-info-tile__header__wrapper">
             <button class="vl-toggle vl-link vl-link--bold js-vl-accordion__toggle">
               <i class="vl-link__icon vl-link__icon--before vl-toggle__icon vl-vi vl-vi-arrow-right-fat" aria-hidden="true"></i>
-              <h3 id="title" class="vl-info-tile__header__title">
+              <h3 class="vl-info-tile__header__title">
                 <slot name="title"></slot><slot name="title-label"></slot>
               </h3>
             </button>
@@ -53,12 +53,35 @@ export class VlInfoTile extends vlElement(HTMLElement) {
     `);
   }
 
-  connectedCallback() {
-    this._preventContentClickPropagation();
+  /**
+   * Geeft terug of de info-tile togglebaar is.
+   * @return {boolean}
+   */
+  get isToggleable() {
+    return this.getAttribute('toggleable') != undefined;
   }
 
+  /**
+   * Geeft terug of de info-tile geopend is.
+   * @return {boolean}
+   */
   get isOpen() {
-    return this._element.classList.contains('js-vl-accordion--open');
+    if (this.isToggleable) {
+      return this._element.classList.contains('js-vl-accordion--open');
+    } else {
+      return true;
+    }
+  }
+
+  /**
+   * Toggle de info-tile om deze te openen of sluiten.
+   */
+  toggle() {
+    this._toggleElement.click();
+  }
+
+  get _toggleElement() {
+    return this._shadow.querySelector('.js-vl-accordion__toggle');
   }
 
   get _subtitleElement() {
@@ -69,15 +92,16 @@ export class VlInfoTile extends vlElement(HTMLElement) {
     return this._shadow.querySelector('slot[name="content"]');
   }
 
-  _preventContentClickPropagation() {
-    this._subtitleElement.addEventListener('click', (e) => e.stopPropagation());
-    this._contentElement.addEventListener('click', (e) => e.stopPropagation());
-  }
-
   _toggleableChangedCallback(oldValue, newValue) {
     if (newValue != undefined) {
       vl.accordion.dress(this._element);
+      this._preventContentClickPropagation();
     }
+  }
+
+  _preventContentClickPropagation() {
+    this._subtitleElement.addEventListener('click', (e) => e.stopPropagation());
+    this._contentElement.addEventListener('click', (e) => e.stopPropagation());
   }
 }
 
