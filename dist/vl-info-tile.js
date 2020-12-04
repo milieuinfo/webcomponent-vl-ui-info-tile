@@ -1,6 +1,6 @@
 import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
 import '/node_modules/@govflanders/vl-ui-util/dist/js/util.js';
-import '/lib/accordion.js';
+import '/node_modules/vl-ui-info-tile/lib/accordion.js';
 
 /**
  * VlInfoTile
@@ -22,7 +22,7 @@ export class VlInfoTile extends vlElement(HTMLElement) {
   constructor() {
     super(`
       <style>
-        @import '/src/style.css';
+        @import '/node_modules/vl-ui-info-tile/dist/style.css';
         @import '/node_modules/vl-ui-accordion/dist/style.css';
       </style>
       <div class="vl-info-tile js-vl-accordion">
