@@ -38,10 +38,10 @@
 	},
 	"dependencies": {
 		"vl-ui-accordion": "^3.0.9",
-		"vl-ui-core": "^6.0.0"
+		"vl-ui-core": "^7.0.0"
 	},
 	"peerDependencies": {
-		"vl-ui-core": "^6.0.0"
+		"vl-ui-core": "^7.0.0"
 	},
 	"devDependencies": {
 		"@govflanders/vl-ui-info-tile": "^3.11.5",
