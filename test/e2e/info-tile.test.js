@@ -1,10 +1,11 @@
-const {assert, driver} = require('vl-ui-core').Test.Setup;
+const {assert, getDriver} = require('vl-ui-core').Test.Setup;
 const VlInfoTilePage = require('./pages/vl-info-tile.page');
 
 describe('vl-info-tile', async () => {
-  const vlInfoTilePage = new VlInfoTilePage(driver);
+  let vlInfoTilePage;
 
   before(() => {
+    vlInfoTilePage = new VlInfoTilePage(getDriver());
     return vlInfoTilePage.load();
   });
 
