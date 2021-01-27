@@ -13,8 +13,30 @@
 
 	<body is="vl-body">
         <vl-demo-page data-vl-webcomponent="vl-info-tile" data-vl-link="https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-info-tile">
+            <vl-demo data-vl-title="Info-tile">
+                <vl-info-tile id="vl-info-tile">
+                    <span slot="title">Broos Deprez</span>
+                    <span slot="subtitle">Uw zoon (19.05.2005) <br> niet verwant aan referentiepersoon</span>
+                    <div slot="content">
+                        <p><strong>Beslissingsbrief Studietoelage</strong></p>
+                        <p>De studietoelage voor Broos Deprez werd toegekend.</p>
+                    </div>
+                </vl-info-tile>
+            </vl-demo>
+
             <vl-demo data-vl-title="Toggleable info-tile">
-                <vl-info-tile data-vl-toggleable>
+                <vl-info-tile id="vl-info-tile-toggleable" data-vl-toggleable>
+                    <span slot="title">Broos Deprez</span>
+                    <span slot="subtitle">Uw zoon (19.05.2005) <br> niet verwant aan referentiepersoon</span>
+                    <div slot="content">
+                        <p><strong>Beslissingsbrief Studietoelage</strong></p>
+                        <p>De studietoelage voor Broos Deprez werd toegekend.</p>
+                    </div>
+                </vl-info-tile>
+            </vl-demo>
+
+            <vl-demo data-vl-title="Toggleable info-tile auto open">
+                <vl-info-tile id="vl-info-tile-toggleabel-auto-open" data-vl-toggleable data-vl-auto-open>
                     <span slot="title">Broos Deprez</span>
                     <span slot="subtitle">Uw zoon (19.05.2005) <br> niet verwant aan referentiepersoon</span>
                     <div slot="content">
