@@ -35,4 +35,9 @@ describe('vl-info-tile', async () => {
     await infoTile.toggle();
     await assert.eventually.isFalse(infoTile.isOpen());
   });
+
+  it('als gebruiker kan ik meteen de content zien van een toggleable info tile die automatisch open staat', async () => {
+    const infoTile = await vlInfoTilePage.getToggleableAutoOpenInfoTile();
+    await assert.eventually.isTrue(infoTile.isOpen());
+  });
 });
