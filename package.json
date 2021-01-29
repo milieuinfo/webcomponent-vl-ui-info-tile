@@ -38,16 +38,16 @@
 	},
 	"dependencies": {
 		"vl-ui-accordion": "^3.0.10",
-		"vl-ui-core": "^7.0.1"
+		"vl-ui-core": "^7.1.0"
 	},
 	"peerDependencies": {
 		"vl-ui-accordion": "^3.0.10",
-		"vl-ui-core": "^7.0.1"
+		"vl-ui-core": "^7.1.0"
 	},
 	"devDependencies": {
 		"@govflanders/vl-ui-info-tile": "^3.12.3",
 		"@govflanders/vl-ui-util": "^3.12.3",
 		"vl-ui-body": "^1.0.4",
-		"vl-ui-util": "^5.3.4"
+		"vl-ui-util": "^5.3.7"
 	}
 }
