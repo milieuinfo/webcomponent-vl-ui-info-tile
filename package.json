@@ -38,7 +38,7 @@
 	},
 	"dependencies": {
 		"vl-ui-accordion": "^3.0.10",
-		"vl-ui-core": "^7.1.0"
+		"vl-ui-core": "^7.1.1"
 	},
 	"peerDependencies": {
 		"vl-ui-accordion": "^3.0.10",
