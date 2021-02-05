@@ -36,6 +36,19 @@
       </vl-info-tile>
     </template>
   </test-fixture>
+  
+  <test-fixture id="vl-info-tile-toggleable-auto-open-fixture">
+    <template>
+      <vl-info-tile data-vl-toggleable data-vl-auto-open>
+        <span slot="title">Broos Deprez</span>
+        <span slot="subtitle">Uw zoon (19.05.2005) <br> niet verwant aan referentiepersoon</span>
+        <div slot="content">
+          <p><strong>Beslissingsbrief Studietoelage</strong></p>
+          <p>De studietoelage voor Broos Deprez werd toegekend.</p>
+        </div>
+      </vl-info-tile>
+    </template>
+  </test-fixture>
 
   <script>
     suite('vl-info-tile', () => {
@@ -70,11 +83,31 @@
         assert.isTrue(vl.accordion.dress.calledWith(infoTile._element));
       });
 
-      test('een toggleable info tile kan programmatisch geopend en gesloten worden', () => {
+      test('een toggleable info tile kan programmatisch geopend en gesloten worden afhankelijk van de vorige status', () => {
         const infoTile = fixture('vl-info-tile-toggleable-fixture');
         assert.isFalse(infoTile.isOpen);
         infoTile.toggle();
         assert.isTrue(infoTile.isOpen);
+      });
+
+      test('een toggleable info tile kan programmatisch geopend worden', () => {
+        const infoTile = fixture('vl-info-tile-toggleable-fixture');
+        assert.isFalse(infoTile.isOpen);
+        infoTile.open();
+        assert.isTrue(infoTile.isOpen);
+        infoTile.open();
+        assert.isTrue(infoTile.isOpen);
+      });
+
+      test('een toggleable info tile kan programmatisch gesloten worden', () => {
+        const infoTile = fixture('vl-info-tile-toggleable-fixture');
+        assert.isFalse(infoTile.isOpen);
+        infoTile.open();
+        assert.isTrue(infoTile.isOpen);
+        infoTile.close();
+        assert.isFalse(infoTile.isOpen);
+        infoTile.close();
+        assert.isFalse(infoTile.isOpen);
       });
 
       test('bij een toggleable info tile zal de click op de sub titel of de content tegengehouden worden om te voorkomen dat de info tile geopend of gesloten wordt', () => {
@@ -84,6 +117,13 @@
         infoTile._subtitleElement.click();
         assert.isTrue(infoTile.isOpen);
         infoTile._contentElement.click();
+        assert.isTrue(infoTile.isOpen);
+      });
+
+      test('via het auto-open attribuut kan een toggleable info tile automatisch geopend worden bij het renderen', () => {
+        let infoTile = fixture('vl-info-tile-toggleable-fixture');
+        assert.isFalse(infoTile.isOpen);
+        infoTile = fixture('vl-info-tile-toggleable-auto-open-fixture');
         assert.isTrue(infoTile.isOpen);
       });
     });
