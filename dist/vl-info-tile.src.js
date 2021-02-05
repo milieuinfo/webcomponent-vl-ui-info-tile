@@ -1,6 +1,6 @@
 import {vlElement, define} from 'vl-ui-core';
 import '@govflanders/vl-ui-util/dist/js/util.js';
-import 'vl-ui-info-tile/lib/accordion.js';
+import '../lib/accordion.js';
 
 /**
  * VlInfoTile
