@@ -56,6 +56,7 @@ export class VlInfoTile extends vlElement(HTMLElement) {
 
   connectedCallback() {
     this.__processAutoOpen();
+    this.__processSlots();
   }
 
   /**
@@ -84,6 +85,14 @@ export class VlInfoTile extends vlElement(HTMLElement) {
 
   get _titleElement() {
     return this._headerWrapperElement.querySelector('#title');
+  }
+
+  get _titleLabelSlot() {
+    return this.querySelector('[slot=\'title-label\']');
+  }
+
+  get _titleLabelSlotElement() {
+    return this._titleElement.querySelector('[name="title-label"]');
   }
 
   /**
@@ -150,6 +159,12 @@ export class VlInfoTile extends vlElement(HTMLElement) {
   __processAutoOpen() {
     if (this.isToggleable && this.dataset.vlAutoOpen != undefined) {
       this.open();
+    }
+  }
+
+  __processSlots() {
+    if (!this._titleLabelSlot) {
+      this._titleLabelSlotElement.remove();
     }
   }
 }
