@@ -15,6 +15,7 @@
     <template>
       <vl-info-tile>
         <span slot="title">Broos Deprez</span>
+        <span slot="title-label">Label</span>
         <span slot="subtitle">Uw zoon (19.05.2005) <br> niet verwant aan referentiepersoon</span>
         <div slot="content">
           <p><strong>Beslissingsbrief Studietoelage</strong></p>
@@ -52,6 +53,7 @@
 
   <script>
     suite('vl-info-tile', () => {
+      const should = chai.should();
       const sandbox = sinon.createSandbox();
 
       teardown(() => {
@@ -60,11 +62,13 @@
 
       test('de slot elementen worden op de juiste plaatst gevisualiseerd', () => {
         const infoTile = fixture('vl-info-tile-fixture');
-        const title = infoTile.shadowRoot.querySelector('.vl-info-tile__header__title slot');
+        const title = infoTile.shadowRoot.querySelector('.vl-info-tile__header__title slot[name="title"]');
+        const titleLabel = infoTile.shadowRoot.querySelector('.vl-info-tile__header__title slot[name="title-label"]');
         const subtitle = infoTile.shadowRoot.querySelector('.vl-info-tile__header__subtitle slot');
         const content = infoTile.shadowRoot.querySelector('.vl-info-tile__content slot');
         const footer = infoTile.shadowRoot.querySelector('.vl-info-tile__footer slot');
         assert.equal(title.assignedElements()[0], document.querySelector('[slot="title"]'));
+        assert.equal(titleLabel.assignedElements()[0], document.querySelector('[slot="title-label"]'));
         assert.equal(subtitle.assignedElements()[0], document.querySelector('[slot="subtitle"]'));
         assert.equal(content.assignedElements()[0], document.querySelector('[slot="content"]'));
         assert.equal(footer.assignedElements()[0], document.querySelector('[slot="footer"]'));
@@ -125,6 +129,13 @@
         assert.isFalse(infoTile.isOpen);
         infoTile = fixture('vl-info-tile-toggleable-auto-open-fixture');
         assert.isTrue(infoTile.isOpen);
+      });
+
+      test('indien er geen titel label element aanwezig is, zal het slot element verwijderd worden', () => {
+        let infoTile = fixture('vl-info-tile-fixture');
+        should.exist(infoTile._titleLabelSlotElement);
+        infoTile = fixture('vl-info-tile-toggleable-fixture');
+        should.not.exist(infoTile._titleLabelSlotElement);
       });
     });
   </script>
