@@ -40,4 +40,13 @@ describe('vl-info-tile', async () => {
     const infoTile = await vlInfoTilePage.getToggleableAutoOpenInfoTile();
     await assert.eventually.isTrue(infoTile.isOpen());
   });
+
+  it('als gebruiker kan ik een toggleable info tile openen en sluiten als de content een grid element bevat', async () => {
+    const infoTile = await vlInfoTilePage.getToggleableGridInfoTile();
+    await assert.eventually.isFalse(infoTile.isOpen());
+    await infoTile.toggle();
+    await assert.eventually.isTrue(infoTile.isOpen());
+    await infoTile.toggle();
+    await assert.eventually.isFalse(infoTile.isOpen());
+  });
 });

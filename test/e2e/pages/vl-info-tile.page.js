@@ -14,6 +14,10 @@ class VlInfoTilePage extends Page {
     return new VlInfoTile(this.driver, '#vl-info-tile-toggleable-auto-open');
   }
 
+  async getToggleableGridInfoTile() {
+    return new VlInfoTile(this.driver, '#vl-info-tile-toggleable-grid');
+  }
+
   async load() {
     await super.load(Config.baseUrl + '/demo/vl-info-tile.html');
   }
