@@ -170,7 +170,10 @@ export class VlInfoTile extends vlElement(HTMLElement) {
     if (!this._titleLabelSlot) {
       this._titleLabelSlotElement.remove();
     }
-    this._titleElement.addEventListener('click', () => this._buttonElement.click());
+    this._titleElement.addEventListener('click', (event) => {
+      event.stopPropagation();
+      this._buttonElement.click();
+    });
   }
 }
 
