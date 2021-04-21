@@ -12,8 +12,8 @@ class VlInfoTile extends VlElement {
   }
 
   async getTitle() {
-    const element = await this._getSlotElement('title');
-    return element.getText();
+    const slots = await this.getTitleSlotElements();
+    return slots[0].getText();
   }
 
   async getSubtitle() {
@@ -29,10 +29,19 @@ class VlInfoTile extends VlElement {
     return this._getSlotElement('footer');
   }
 
+  async getTitleSlotElements() {
+    const slot = await this._getSlot('title');
+    return this.getAssignedElements(slot);
+  }
+
   async _getSlotElement(name) {
-    const slot = await this.shadowRoot.findElement(By.css(`slot[name="${name}"]`));
+    const slot = await this._getSlot(name);
     const element = await this.getAssignedElements(slot);
     return new VlElement(this.driver, element[0]);
+  }
+
+  async _getSlot(name) {
+    return this.shadowRoot.findElement(By.css(`slot[name="${name}"]`));
   }
 
   async _getToggleElement() {

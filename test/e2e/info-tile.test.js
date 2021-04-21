@@ -36,6 +36,16 @@ describe('vl-info-tile', async () => {
     await assert.eventually.isFalse(infoTile.isOpen());
   });
 
+  it('als gebruiker kan ik een toggleable info tile openen en sluiten door op de titel te klikken', async () => {
+    const infoTile = await vlInfoTilePage.getToggleableInfoTile();
+    await assert.eventually.isFalse(infoTile.isOpen());
+    const slots = await infoTile.getTitleSlotElements();
+    await slots[0].click();
+    await assert.eventually.isTrue(infoTile.isOpen());
+    await slots[0].click();
+    await assert.eventually.isFalse(infoTile.isOpen());
+  });
+
   it('als gebruiker kan ik meteen de content zien van een toggleable info tile die automatisch open staat', async () => {
     const infoTile = await vlInfoTilePage.getToggleableAutoOpenInfoTile();
     await assert.eventually.isTrue(infoTile.isOpen());
