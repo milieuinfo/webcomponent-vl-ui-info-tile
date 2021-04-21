@@ -95,6 +95,10 @@ export class VlInfoTile extends vlElement(HTMLElement) {
     return this._titleElement.querySelector('[name="title-label"]');
   }
 
+  get _buttonElement() {
+    return this._titleElement.querySelector('button');
+  }
+
   /**
    * Toggle de info-tile om deze te openen of sluiten.
    */
@@ -166,6 +170,7 @@ export class VlInfoTile extends vlElement(HTMLElement) {
     if (!this._titleLabelSlot) {
       this._titleLabelSlotElement.remove();
     }
+    this._titleElement.addEventListener('click', () => this._buttonElement.click());
   }
 }
 
