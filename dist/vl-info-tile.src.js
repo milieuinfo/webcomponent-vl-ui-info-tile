@@ -96,7 +96,7 @@ export class VlInfoTile extends vlElement(HTMLElement) {
   }
 
   get _buttonElement() {
-    return this._titleElement.querySelector('button');
+    return this._element.querySelector('button');
   }
 
   /**
