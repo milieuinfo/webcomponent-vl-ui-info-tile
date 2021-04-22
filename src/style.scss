@@ -17,6 +17,9 @@
 // Components
 // ==========================================================================
 @import "vl-ui-info-tile/src/scss/info-tile";
+@import "vl-ui-link/src/scss/link";
+@import "vl-ui-toggle/src/scss/toggle";
+@import "vl-ui-accordion/src/scss/accordion";
 
 :host([data-vl-toggleable]) {
     .vl-info-tile {

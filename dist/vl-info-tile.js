@@ -1,6 +1,6 @@
 import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
 import '/node_modules/@govflanders/vl-ui-util/dist/js/util.js';
-import '/node_modules/vl-ui-info-tile/lib/accordion.js';
+import '/node_modules/@govflanders/vl-ui-accordion/dist/js/accordion.js';
 
 /**
  * VlInfoTile
@@ -93,6 +93,10 @@ export class VlInfoTile extends vlElement(HTMLElement) {
     return this._titleElement.querySelector('[name="title-label"]');
   }
 
+  get _buttonElement() {
+    return this._element.querySelector('button');
+  }
+
   /**
    * Toggle de info-tile om deze te openen of sluiten.
    */
@@ -164,6 +168,10 @@ export class VlInfoTile extends vlElement(HTMLElement) {
     if (!this._titleLabelSlot) {
       this._titleLabelSlotElement.remove();
     }
+    this._titleElement.addEventListener('click', (event) => {
+      event.stopPropagation();
+      this._buttonElement.click();
+    });
   }
 }
 
