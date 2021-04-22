@@ -27,7 +27,6 @@ export class VlInfoTile extends vlElement(HTMLElement) {
     super(`
       <style>
         @import '/node_modules/vl-ui-info-tile/dist/style.css';
-        @import '/node_modules/vl-ui-accordion/dist/style.css';
       </style>
       <div class="vl-info-tile">
         <header class="vl-info-tile__header" role="presentation">
