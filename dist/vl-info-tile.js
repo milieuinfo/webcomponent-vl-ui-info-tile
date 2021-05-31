@@ -136,7 +136,7 @@ export class VlInfoTile extends vlElement(HTMLElement) {
   _toggleableChangedCallback(oldValue, newValue) {
     if (newValue != undefined) {
       this.__prepareAccordionElements();
-      vl.accordion.dress(this._element);
+      vl.accordion.dress(this._buttonElement);
       this.__preventContentClickPropagation();
     }
   }
