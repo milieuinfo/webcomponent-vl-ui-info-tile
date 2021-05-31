@@ -9,6 +9,10 @@ describe('vl-info-tile', async () => {
     return vlInfoTilePage.load();
   });
 
+  it('WCAG', async () => {
+    await assert.eventually.isFalse(vlInfoTilePage.hasWcagIssues());
+  });
+
   it('als gebruiker kan ik de titel van de info tile bekijken', async () => {
     const infoTile = await vlInfoTilePage.getInfoTile();
     await assert.eventually.equal(infoTile.getTitle(), 'Broos Deprez');
